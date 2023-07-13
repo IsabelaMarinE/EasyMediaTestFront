@@ -7,6 +7,7 @@ import { ResponseModel } from 'src/app/components/models/response.model';
 import { UserModel } from '../models/user.model';
 import { LogInModel } from '../models/login-user.model';
 import { CreateUserModel } from '../models/create-user.model';
+import { LogInResponseModel } from '../models/login-response.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,8 +27,8 @@ export class UserService {
       return this.http.post<ResponseModel<UserModel>>(`${environment.apiUrl}/users/logout`, id, httpOptions);
     }
 
-    logIn(request: LogInModel): Observable<ResponseModel<UserModel>> {
-        return this.http.post<ResponseModel<UserModel>>(`${environment.apiUrl}/users/login`, request, httpOptions)
+    logIn(request: LogInModel): Observable<ResponseModel<LogInResponseModel>> {
+        return this.http.post<ResponseModel<LogInResponseModel>>(`${environment.apiUrl}/users/login`, request, httpOptions)
     }
 
     createUser(request: CreateUserModel): Observable<UserModel> {

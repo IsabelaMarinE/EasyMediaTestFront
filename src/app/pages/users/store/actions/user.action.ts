@@ -3,6 +3,7 @@ import { CreateUserModel } from '../../models/create-user.model';
 import { UserModel } from '../../models/user.model';
 import { LogInModel } from '../../models/login-user.model';
 import { ResponseModel } from 'src/app/components/models/response.model';
+import { LogInResponseModel } from '../../models/login-response.model';
 
 export const clearStoreFlags = createAction('[User] Clear Store Flags');
 
@@ -58,7 +59,7 @@ export const logIn = createAction(
 
 export const logInSuccess = createAction(
     '[User] Login User Success',
-    props<{ response: ResponseModel<UserModel> }>()
+    props<{ response: ResponseModel<LogInResponseModel> }>()
 )
 
 export const logInFail = createAction(

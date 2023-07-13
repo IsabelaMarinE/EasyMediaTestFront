@@ -2,13 +2,14 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { UserModel } from '../../models/user.model';
 import * as UserActions from '../actions/user.action';
 import { ResponseModel } from 'src/app/components/models/response.model';
+import { LogInResponseModel } from '../../models/login-response.model';
 
 export const UserFetureKey = 'User';
 
 export interface UserState {
     User: ResponseModel<UserModel> | undefined;
     createUserResponse: UserModel | undefined;
-    logInResponse: ResponseModel<UserModel> | undefined;
+    logInResponse: ResponseModel<LogInResponseModel> | undefined;
     logoutResponse: ResponseModel<any> | undefined;
     errors: any| undefined;
 }

@@ -29,8 +29,8 @@ export class PostService {
       return this.http.get<ResponseModel<PostModel>>(`${environment.apiUrl}/post/filter-date/${date}`, httpOptions);
     }
 
-    filterPostDateUser(date: Date): Observable<ResponseModel<PostModel>> {
-      return this.http.get<ResponseModel<PostModel>>(`${environment.apiUrl}/post/filter-date-user/${date}`, httpOptions);
+    filterPostDateUser(date: Date, id: string): Observable<ResponseModel<PostModel>> {
+      return this.http.get<ResponseModel<PostModel>>(`${environment.apiUrl}/post/filter-date/${date}/${id}`, httpOptions);
     }
 
     getPosts(): Observable<ResponseModel<PostModel>> {

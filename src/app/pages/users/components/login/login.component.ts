@@ -7,7 +7,9 @@ import * as _ from 'lodash';
 import { UserStoreState } from '../../store/reducers/user-store.reducer';
 import * as UserActions from '../../store/actions/user.action';
 import * as UserSelector from '../..//store/selectors/user.selectors';
-import { UserModel } from '../../models/user.model';
+import { LoginGuardGuard } from 'src/app/auth/login-guard.guard';
+import { Router } from '@angular/router';
+import { LogInResponseModel } from '../../models/login-response.model';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +20,15 @@ export class LoginComponent implements OnInit {
 
   public ngDestroyed$ = new Subject();
   public logInModel = new LogInModel();
-  public userModel = new UserModel();
+  public loginResponse = new LogInResponseModel();
   loginForm: FormGroup;
   public showPassword = false;
 
   constructor(
     private userStore: Store<UserStoreState>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public router: Router,
+    private loginGuardGuard: LoginGuardGuard
   ){
     this.loginForm = this.fb.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
@@ -51,7 +55,10 @@ export class LoginComponent implements OnInit {
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe((response) => {
         if(response){
-          this.userModel = _.cloneDeep(response.items[0]);
+          this.loginResponse = _.cloneDeep(response.items[0]);
+          this.loginGuardGuard.setToken(this.loginResponse.token);
+          this.loginGuardGuard.setId(this.loginResponse.id);
+          this.router.navigate(['/posts']);
         }
       })
   }

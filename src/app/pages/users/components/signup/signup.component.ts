@@ -7,7 +7,8 @@ import * as _ from 'lodash';
 import { UserStoreState } from '../../store/reducers/user-store.reducer';
 import * as UserActions from '../../store/actions/user.action';
 import * as UserSelector from '../..//store/selectors/user.selectors';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +26,8 @@ export class SignupComponent implements OnInit  {
 
   constructor(
     private userStore: Store<UserStoreState>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    public router: Router
   ){
     this.singupForm = this.fb.group({
       fullName: ['', Validators.compose([Validators.required])],
@@ -53,6 +55,7 @@ export class SignupComponent implements OnInit  {
       .subscribe((response) => {
         if(response){
           this.userModel = _.cloneDeep(response);
+          this.router.navigate(['/']);
         }
       })
 
@@ -75,13 +78,6 @@ export class SignupComponent implements OnInit  {
     request = _.merge(request, this.singupForm.value);
     this.userStore.dispatch(UserActions.createUser({request}));
     this.singupForm.reset();
-  }
-
-  isPasswordEqual(data:any) {
-    this.confirmPassword = data;
-    if(this.createUserModel.password !== this.confirmPassword){
-
-    }
   }
 
   showPassWord() {

@@ -38,7 +38,7 @@
       <div class="col-md-12">
         <label for="password" class="form-label">Confirm Password</label>
         <div class="input-group">
-          <input [type]="showPassword ? 'text' : 'password'" class="form-control" [ngModel]="confirmPassword" placeholder="......." (ngModelChange)="isPasswordEqual($event)" minlength=8 required>
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="......." minlength=8 required>
           <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
         </div>
       </div>
