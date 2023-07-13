@@ -5,6 +5,26 @@ Aplicacion creada en la version [Angular CLI](https://github.com/angular/angular
 # Description
 
 Aplicacion creada con Angular Framework y Node.js, para realizar un basico de muro log in y creacion de usuario con respectivos filtros. Usando Figma para Mockup. Bootstrap para el Grid y manejo de espacios, Css para configurar colores.
+Librerias Usadas Angular
+- @auth0/angular-jwt
+- @ngrx/effects
+- @ngrx/store
+- bootstrap
+- lodash
+- ngx-pagination
+- rxjs
+- sweetalert2
+
+Librerias Usadas Nodejs
+- bcryptjs
+- body-parser
+- express
+- express-validator
+- jsonwebtoken
+- mongodb
+- mongodb-connection-string-url
+- mongoose
+- nodemon
 
 ## Installation
 
