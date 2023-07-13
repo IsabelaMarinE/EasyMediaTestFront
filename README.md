@@ -1,27 +1,31 @@
 # Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
+Aplicacion creada en la version [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
-## Development server
+# Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Aplicacion creada con Angular Framework y Node.js, para realizar un basico de muro log in y creacion de usuario con respectivos filtros. Usando Figma para Mockup. Bootstrap para el Grid y manejo de espacios, Css para configurar colores.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Descarga o clona el projecto y en consola `npm install`, asi se instala todas las dependencias del proyecto.
 
-## Build
+## Development frontend
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Para correr la aplicacion en consola `ng serve` . Abre un navegador y viaja a `http://localhost:4200/`.
 
-## Running unit tests
+## Installation Backend
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Luego Descarga o clona el projecto de backend tambien ponemos en consola `npm install`, para instalar dependecias.
 
-## Running end-to-end tests
+## Development backend
+Opcion 1
+Crear una Base de datos en Docker sin necesidad de docker-compose `docker run -d -p 27017:27017 --name NOMBRE BASE DE DATOS -v mongo-data:/data/db -e MONGODB_INITDB_ROOT_USERNAME=root -e MONGODB_INITDB_ROOT_PASSWORD=123abc mongo:latest`
+Configuramos en nuestro app.js de nuestro projecto Node.js, la coneccion a la base de datos, por defecto dejare una base de datos realizada con mongodb Atlas.
+En Consola `npm run start`. Para correr el proyecto `http://localhost:3000/`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+Opcion 2
+Si tienes Docker Instalado, puedes configurar el `Dockerfile` con las respectivas carpetas que se usa segun su computadora recordar que mac, linux y windows tienes configuraciones diferentes
+Al configurar este archivo podemos en una linea de comandos `docker-compose up` donde levantarameos los servicios de node y mongoDB
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
