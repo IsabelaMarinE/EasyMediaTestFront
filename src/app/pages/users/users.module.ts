@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -21,8 +22,12 @@ import { SignupComponent } from './components/signup/signup.component';
   imports: [
     CommonModule,
     UsersRoutingModule,
+    FormsModule,
     StoreModule.forFeature(userStoreFeatureKey, userStoreReducer),
     EffectsModule.forFeature(UserEffects)
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class UsersModule { }

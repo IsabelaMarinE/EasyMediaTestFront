@@ -1,1 +1,27 @@
-<p>login works!</p>
+<section class="container">
+  <div class="container-img-login">
+    <img src="../../../../../assets/img/IconLogin.svg" alt="Icon" class="mx-auto d-block" >
+  </div>
+  <h1 class="title text-center font-weight-bold">Easy Media</h1>
+  <p class="sub-title text-center">Now, share is easy</p>
+  <div class="container-form">
+    <p class="title-form text-center">Sign In</p>
+    <form class="row g-3" #FormLogIn="ngForm" (ngSubmit)="logInUser(FormLogIn)">
+      <div class="col-md-12">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" [(ngModel)]="logInModel.email" #email="ngModel" name="email" placeholder="example@email.com" required>
+      </div>
+      <div class="col-md-12">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" [(ngModel)]="logInModel.password" #password="ngModel" placeholder="......." name="password" required>
+          <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
+        </div>
+      </div>
+      <div class="col-12 d-grid gap-2">
+        <button class="btn btn-global-style rounded-pill" type="submit">SIGN IN</button>
+      </div>
+    </form>
+    <p class="singup-text text-center">Don’t have an account? <span>Sign up here</span></p>
+  </div>
+</section>
