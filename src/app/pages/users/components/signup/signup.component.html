@@ -1,1 +1,51 @@
-<p>signup works!</p>
+<section class="container">
+  <div class="container-img-login">
+    <img src="../../../../../assets/img/IconLogin.svg" alt="Icon" class="mx-auto d-block img-singup" >
+  </div>
+  <h1 class="title text-center font-weight-bold">Easy Media</h1>
+  <p class="sub-title text-center">Now, share is easy</p>
+  <div class="container-form">
+    <p class="title-form text-center">Sign Up</p>
+    <form class="row g-3 needs-validation" [formGroup]="singupForm" (ngSubmit)="createUser()">
+      <div class="col-md-12">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" formControlName="fullName" name="fullName" placeholder="Camilo Cifuentes"
+        [ngClass]="{ 'is-invalid': f['fullName'].touched && f['fullName'].errors, 'is-valid': f['fullName'].valid }"required>
+        <div *ngIf="f['fullName'].touched && f['fullName'].errors" class="invalid-feedback">
+          <div *ngIf="f['fullName'].errors['required']">Este campo es requerido</div>
+          <div *ngIf="f['fullName'].invalid">Por favor ingresa un nombre válido</div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email" name="email" placeholder="example@email.com" [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors, 'is-valid': f['email'].valid }" required>
+        <div *ngIf="f['email'].touched && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Este campo es requerido</div>
+          <div *ngIf="f['email'].invalid">Por favor ingresa un email válido</div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" placeholder="......." name="password" [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors, 'is-valid': f['password'].valid }"required>
+          <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
+        </div>
+        <div *ngIf="f['password'].touched && f['password'].errors" class="invalid-feedback">
+          <div *ngIf="f['password'].errors['required']">Este campo es requerido</div>
+          <div *ngIf="f['password'].errors['minlength']">La contraseña debe tener mínimo 8 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <label for="password" class="form-label">Confirm Password</label>
+        <div class="input-group">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" [ngModel]="confirmPassword" placeholder="......." (ngModelChange)="isPasswordEqual($event)" required>
+          <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
+        </div>
+      </div>
+      <div class="col-12 d-grid gap-2">
+        <button class="btn btn-global-style rounded-pill" type="submit">SIGN UP</button>
+      </div>
+    </form>
+    <p class="singup-text text-center">Already have an account? <span routerLink="/">Login</span></p>
+  </div>
+</section>

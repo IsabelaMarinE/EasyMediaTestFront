@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { LogInModel } from '../../models/login-user.model';
 import { Subject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -19,11 +19,20 @@ export class LoginComponent implements OnInit {
   public ngDestroyed$ = new Subject();
   public logInModel = new LogInModel();
   public userModel = new UserModel();
+  loginForm: FormGroup;
   public showPassword = false;
 
   constructor(
     private userStore: Store<UserStoreState>,
-  ){}
+    private fb: FormBuilder
+  ){
+    this.loginForm = this.fb.group({
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
+    });
+  }
+
+  get f() { return this.loginForm.controls; }
 
   public ngOnDestroy() {
     this.userStore.dispatch(UserActions.clearStoreFlags());
@@ -32,6 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.storeSubscription();
   }
 
@@ -46,10 +56,15 @@ export class LoginComponent implements OnInit {
       })
   }
 
-  logInUser(form:NgForm){
-    if(form.valid){
-      let request;
+  logInUser(){
+    let request;
+    if (this.loginForm.invalid) {
+      return;
     }
+    request = new LogInModel();
+    request = _.merge(request, this.loginForm.value);
+    this.userStore.dispatch(UserActions.logIn({request}));
+    this.loginForm.reset();
   }
 
   showPassWord() {

@@ -6,22 +6,32 @@
   <p class="sub-title text-center">Now, share is easy</p>
   <div class="container-form">
     <p class="title-form text-center">Sign In</p>
-    <form class="row g-3" #FormLogIn="ngForm" (ngSubmit)="logInUser(FormLogIn)">
+    <form class="row g-3 needs-validation" [formGroup]="loginForm" (ngSubmit)="logInUser()">
       <div class="col-md-12">
         <label for="email" class="form-label">Email</label>
-        <input type="text" class="form-control" id="email" [(ngModel)]="logInModel.email" #email="ngModel" name="email" placeholder="example@email.com" required>
+        <input type="text" class="form-control" formControlName="email" name="email" placeholder="example@email.com"
+        [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors, 'is-valid': f['email'].valid }" required>
+        <div *ngIf="f['email'].touched && f['email'].errors" class="invalid-feedback">
+          <div *ngIf="f['email'].errors['required']">Este campo es requerido</div>
+          <div *ngIf="f['email'].invalid">Por favor ingresa un email válido</div>
+        </div>
       </div>
       <div class="col-md-12">
         <label for="password" class="form-label">Password</label>
         <div class="input-group">
-          <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" [(ngModel)]="logInModel.password" #password="ngModel" placeholder="......." name="password" required>
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" placeholder="......." name="password" minlength="8"
+          [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors, 'is-valid': f['password'].valid }"required>
           <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
+        </div>
+        <div *ngIf="f['password'].touched && f['password'].errors" class="invalid-feedback">
+          <div *ngIf="f['password'].errors['required']">Este campo es requerido</div>
+          <div *ngIf="f['password'].errors['minlength']">La contraseña debe tener mínimo 8 caracteres</div>
         </div>
       </div>
       <div class="col-12 d-grid gap-2">
         <button class="btn btn-global-style rounded-pill" type="submit">SIGN IN</button>
       </div>
     </form>
-    <p class="singup-text text-center">Don’t have an account? <span>Sign up here</span></p>
+    <p class="singup-text text-center">Don’t have an account? <span routerLink="/signin">Sign up here</span></p>
   </div>
 </section>
