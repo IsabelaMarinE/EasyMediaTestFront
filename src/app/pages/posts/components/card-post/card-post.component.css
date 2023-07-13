@@ -1,0 +1,25 @@
+.card {
+  border-radius: 16px;
+  --bs-card-bg: transparent !important;
+}
+
+.card-header {
+  color: #fff;
+  background-color: #58BCDB;
+}
+
+.card-body {
+  color: #EBEBEB !important;
+  background-color: #5F5E5E;
+}
+
+.card-text {
+  color: #EBEBEB !important;
+  font-size: 14px;
+  line-height: 16.8px;
+}
+
+.text-body-secondary {
+  color: #EBEBEB !important;
+  font-size: 12px;
+}

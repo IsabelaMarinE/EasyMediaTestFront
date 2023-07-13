@@ -1,0 +1,13 @@
+section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.title-all-post {
+  color: #fff;
+  font-size: 30px;
+}
+
+.form-control {
+  border-radius: 16px;
+}

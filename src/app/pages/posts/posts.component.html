@@ -1,1 +1,48 @@
-<p>posts works!</p>
+<app-menu></app-menu>
+<section class="container mb-3 mt-3">
+  <ng-container
+      *ngIf="idUser && idUser.length > 0 then userposts else allposts">
+    </ng-container>
+</section>
+
+<ng-template #allposts>
+  <h1 class="text-center title-all-post mb-3">All Publications</h1>
+  <div class="row g-3 mb-5">
+    <div class="col-md-12">
+      <label class="form-label">Words to Search?</label>
+      <input type="text" class="form-control" [ngModel]="titleSearch"  placeholder="Your post tilte" (ngModelChange)="searchByTitle">
+    </div>
+    <div class="col-md-12">
+      <label class="form-label">Select a date</label>
+      <input type="date" class="form-control" [ngModel]="dateSearch"  placeholder="Select a date" (ngModelChange)="searchByDate">
+    </div>
+  </div>
+  <div *ngIf="listPost; else noPosts">
+    <div *ngFor="let item of listPost | paginate: { itemsPerPage: 2, currentPage: p }" class="mb-2">
+      <app-card-post [description]="item.description" [title]="item.title"></app-card-post>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</ng-template>
+
+<ng-template #userposts>
+  <h1 class="text-center title-all-post mb-3">My Publications</h1>
+  <div class="row g-3 mb-5">
+    <div class="col-md-12">
+      <label class="form-label">Data Select</label>
+      <input type="date" class="form-control" [ngModel]="dateSearchUser"  placeholder="Select a date" (ngModelChange)="searchByDateUser">
+    </div>
+  </div>
+  <div *ngIf="listPost; else noPosts">
+    <div *ngFor="let item of listPost | paginate: { itemsPerPage: 2, currentPage: p }" class="mb-2">
+      <app-card-post [description]="item.description" [title]="item.title"></app-card-post>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</ng-template>
+
+<ng-template #noPosts>
+  <img src="../../../assets/img/nocontent.svg" alt="Not found" class="mx-auto d-block">
+  <h3 class="text-center">Nothing to see here</h3>
+</ng-template>
+

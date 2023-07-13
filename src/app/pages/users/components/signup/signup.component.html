@@ -27,7 +27,7 @@
       <div class="col-md-12">
         <label for="password" class="form-label">Password</label>
         <div class="input-group">
-          <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" placeholder="......." name="password" [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors, 'is-valid': f['password'].valid }"required>
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" placeholder="......." name="password" [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors, 'is-valid': f['password'].valid }" minlength=8 required>
           <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
         </div>
         <div *ngIf="f['password'].touched && f['password'].errors" class="invalid-feedback">
@@ -38,7 +38,7 @@
       <div class="col-md-12">
         <label for="password" class="form-label">Confirm Password</label>
         <div class="input-group">
-          <input [type]="showPassword ? 'text' : 'password'" class="form-control" [ngModel]="confirmPassword" placeholder="......." (ngModelChange)="isPasswordEqual($event)" required>
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" [ngModel]="confirmPassword" placeholder="......." (ngModelChange)="isPasswordEqual($event)" minlength=8 required>
           <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
         </div>
       </div>

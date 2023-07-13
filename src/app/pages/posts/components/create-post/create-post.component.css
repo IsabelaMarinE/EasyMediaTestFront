@@ -1,0 +1,27 @@
+section {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.title-create-post {
+  color: #fff;
+  font-size: 30px;
+}
+
+.btn-global-style {
+  background: linear-gradient(to right,#58BBDB, #C645A9);
+  color: #fff;
+  font-weight: bold;
+  float: right;
+  width: 100px;
+}
+
+.text-body-secondary {
+  font-size: 10px;
+  color: #5F5E5E;
+  float: right;
+}
+
+.form-control {
+  border-radius: 16px;
+}

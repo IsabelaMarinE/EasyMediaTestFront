@@ -1,1 +1,20 @@
-<p>create-post works!</p>
+<app-menu></app-menu>
+<section class="container mb-3 mt-3">
+  <h1 class="text-center title-create-post mb-3">Create message</h1>
+  <form class="row g-3 mb-5" #FormNewPost="ngForm" (ngSubmit)="createNewPost(FormNewPost)">
+    <div class="col-md-12">
+      <label class="form-label">Title messages</label>
+      <input type="text" class="form-control" [(ngModel)]="createPostModel.title" #title="ngModel" name="title" placeholder="Your post tilte" required>
+    </div>
+    <div class="col-md-12">
+      <label class="form-label">Messages</label>
+      <textarea class="form-control" [(ngModel)]="createPostModel.description" #description="ngModel" name="description" placeholder="Create message for share with your friends." rows="3" #descriptionRef maxlength=300></textarea>
+      <p class="text-body-secondary">{{descriptionRef.value.length}}/300</p>
+    </div>
+    <div class="justify-content-end">
+      <button class="btn btn-global-style rounded-pill" type="submit">SHARE</button>
+    </div>
+  </form>
+  <app-card-post [description]="createPostModel.description" [title]="createPostModel.title"></app-card-post>
+</section>
+

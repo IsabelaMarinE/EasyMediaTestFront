@@ -1,1 +1,24 @@
-<p>menu works!</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="../../../assets/img/logoBlackNav.svg" alt=""> Easy Media</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/posts/create-post"><i class="bi bi-pencil-fill"></i> Create Publication</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/posts/:id"><i class="bi bi-card-text"></i> My Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/posts"><i class="bi bi-chat-square-dots-fill"></i> See All Publications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/logout"><i class="bi bi-box-arrow-left"></i> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

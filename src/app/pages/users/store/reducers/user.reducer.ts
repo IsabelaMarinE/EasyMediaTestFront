@@ -58,7 +58,7 @@ export const UserReducer = createReducer(
     })),
     on(UserActions.createUserFail, (state: UserState) => ({
         ...state,
-        createStockResponse: undefined
+        createUserResponse: undefined
     })),
 
     // Log In
