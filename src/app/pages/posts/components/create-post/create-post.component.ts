@@ -8,6 +8,7 @@ import * as postSelector from '../../store/selectors/post.selectors';
 import { Subject, takeUntil } from 'rxjs';
 import { PostStoreState } from '../../store/reducers/post-store.reducer';
 import Swal from 'sweetalert2';
+import { LoginGuardGuard } from 'src/app/auth/login-guard.guard';
 
 @Component({
   selector: 'app-create-post',
@@ -20,6 +21,7 @@ export class CreatePostComponent implements OnInit {
 
   constructor(
     private postStore: Store<PostStoreState>,
+    private loginGuardGuard: LoginGuardGuard
   ){}
 
   ngOnInit() {
@@ -63,8 +65,10 @@ export class CreatePostComponent implements OnInit {
     if(!form.valid){
       return
     }
+    const idUser: string = this.loginGuardGuard.getId()!;
     request = new CreatePostModel();
     request = _.merge(request, this.createPostModel);
+    request.idUser = idUser;
     this.postStore.dispatch(postActions.createPost({request}));
     this.createPostModel = new CreatePostModel();
   }

@@ -10,11 +10,11 @@
   <div class="row g-3 mb-5">
     <div class="col-md-12">
       <label class="form-label">Words to Search?</label>
-      <input type="text" class="form-control" [ngModel]="titleSearch"  placeholder="Your post tilte" (ngModelChange)="searchByTitle">
+      <input type="text" class="form-control" [(ngModel)]="titleSearch"  placeholder="Your post tilte" (ngModelChange)="searchByTitle()">
     </div>
     <div class="col-md-12">
       <label class="form-label">Select a date</label>
-      <input type="date" class="form-control" [ngModel]="dateSearch"  placeholder="Select a date" (ngModelChange)="searchByDate">
+      <input type="date" class="form-control" [(ngModel)]="dateSearch"  placeholder="Select a date" (ngModelChange)="searchByDate()">
     </div>
   </div>
   <div *ngIf="listPost; else noPosts">
@@ -30,7 +30,7 @@
   <div class="row g-3 mb-5">
     <div class="col-md-12">
       <label class="form-label">Data Select</label>
-      <input type="date" class="form-control" [ngModel]="dateSearchUser"  placeholder="Select a date" (ngModelChange)="searchByDateUser">
+      <input type="date" class="form-control" [(ngModel)]="dateSearchUser"  placeholder="Select a date" (ngModelChange)="searchByDateUser()">
     </div>
   </div>
   <div *ngIf="listPost; else noPosts">

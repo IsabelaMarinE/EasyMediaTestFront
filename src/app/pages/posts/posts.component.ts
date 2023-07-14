@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { PostStoreState } from './store/reducers/post-store.reducer';
 import * as postActions from './store/actions/post.action';
 import * as postSelector from './store/selectors/post.selectors';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, map, takeUntil } from 'rxjs';
 import { PostModel } from './models/post.model';
 
 @Component({
@@ -16,10 +16,10 @@ import { PostModel } from './models/post.model';
 export class PostsComponent implements OnInit  {
   public p: number = 1;
   public ngDestroyed$ = new Subject();
-  public titleSearch: string = "";
+  public titleSearch!: string;
   public dateSearch: Date = new Date();
   public dateSearchUser: Date = new Date();
-  public idUser: string = '';
+  public idUser!: string;
   public listPost!: Array<PostModel>;
 
   constructor(
@@ -34,12 +34,16 @@ export class PostsComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params: ParamMap)=>{
-      if(params.get('id') !== null){
+    this.route.queryParamMap.subscribe((params) => {
+      console.log(params.get('id')!)
         this.idUser = params.get('id')!;
-        this.postStore.dispatch(postActions.loadPostUser({id: this.idUser}))
-      }
-    });
+        if(this.idUser){
+          this.postStore.dispatch(postActions.loadPostUser({id: this.idUser}));
+        } else {
+          this.postStore.dispatch(postActions.loadPosts());
+        }
+    })
+
     this.storeSubscription();
   }
 
@@ -57,6 +61,7 @@ export class PostsComponent implements OnInit  {
       .select(postSelector.loadPostByUser)
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe((response) => {
+        console.log(response)
         if(response && response.state){
           this.listPost = _.cloneDeep(response.items);
         }

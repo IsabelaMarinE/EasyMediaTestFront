@@ -9,16 +9,13 @@ import { LoginGuardGuard } from 'src/app/auth/login-guard.guard';
 })
 export class MenuComponent {
   public id: string | null= '';
+  public link!: string;
 
   constructor(
     private loginGuardGuard: LoginGuardGuard,
     public router: Router,
     ){
     this.id = this.loginGuardGuard.getId();
+    this.link = `/posts/${this.id}`;
   }
-
-  navigatepublications(){
-    this.router.navigate([`/posts/${this.id}`]);
-  }
-
 }

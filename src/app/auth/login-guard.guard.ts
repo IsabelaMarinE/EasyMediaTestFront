@@ -27,8 +27,8 @@ export class LoginGuardGuard {
   }
 
   isLogin(){
-    var userToken = JSON.parse(sessionStorage.getItem("token")|| '{}');
-    if(userToken.length != undefined){
+    var userToken = sessionStorage.getItem("token");
+    if(userToken?.length != undefined){
       return true;
     } else{
       return false;
@@ -49,15 +49,6 @@ export class LoginGuardGuard {
 
   setId(id: string): void {
     sessionStorage.setItem("id", id);
-  }
-
-  getTokenIdUser(token: string)  {
-    const decoded = this.helper.decodeToken(token);
-
-    if (decoded.exp === undefined) return null;
-
-    const idUser = decoded.id;
-    return idUser;
   }
 
 }

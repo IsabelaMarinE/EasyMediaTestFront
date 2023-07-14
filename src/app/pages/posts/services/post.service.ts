@@ -37,8 +37,9 @@ export class PostService {
         return this.http.get<ResponseModel<PostModel>>(`${environment.apiUrl}/post/all-posts`, httpOptions);
     }
 
-    getPostByUser(id: string): Observable<ResponseModel<PostModel>> {
-      return this.http.post<ResponseModel<PostModel>>(`${environment.apiUrl}/post/my-posts`, id, httpOptions)
+    getPostByUser(idUSer: string): Observable<ResponseModel<PostModel>> {
+      const data = {id: idUSer}
+      return this.http.post<ResponseModel<PostModel>>(`${environment.apiUrl}/post/my-posts`, data, httpOptions)
     }
 
     createPost(request: CreatePostModel): Observable<PostModel> {
