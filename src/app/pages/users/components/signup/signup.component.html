@@ -8,16 +8,16 @@
     <p class="title-form text-center">Sign Up</p>
     <form class="row g-3 needs-validation" [formGroup]="singupForm" (ngSubmit)="createUser()">
       <div class="col-md-12">
-        <label for="fullName" class="form-label">Full Name</label>
-        <input type="text" class="form-control" formControlName="fullName" name="fullName" placeholder="Camilo Cifuentes"
-        [ngClass]="{ 'is-invalid': f['fullName'].touched && f['fullName'].errors, 'is-valid': f['fullName'].valid }"required>
-        <div *ngIf="f['fullName'].touched && f['fullName'].errors" class="invalid-feedback">
-          <div *ngIf="f['fullName'].errors['required']">Este campo es requerido</div>
-          <div *ngIf="f['fullName'].invalid">Por favor ingresa un nombre válido</div>
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" formControlName="name" name="name" placeholder="Camilo Cifuentes"
+        [ngClass]="{ 'is-invalid': f['name'].touched && f['name'].errors, 'is-valid': f['name'].valid }"required>
+        <div *ngIf="f['name'].touched && f['name'].errors" class="invalid-feedback">
+          <div *ngIf="f['name'].errors['required']">Este campo es requerido</div>
+          <div *ngIf="f['name'].invalid">Por favor ingresa un nombre válido</div>
         </div>
       </div>
       <div class="col-md-12">
-        <label for="email" class="form-label">Email</label>
+        <label class="form-label">Email</label>
         <input type="text" class="form-control" formControlName="email" name="email" placeholder="example@email.com" [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors, 'is-valid': f['email'].valid }" required>
         <div *ngIf="f['email'].touched && f['email'].errors" class="invalid-feedback">
           <div *ngIf="f['email'].errors['required']">Este campo es requerido</div>
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <label for="password" class="form-label">Password</label>
+        <label class="form-label">Password</label>
         <div class="input-group">
           <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" placeholder="......." name="password" [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors, 'is-valid': f['password'].valid }" minlength=8 required>
           <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="col-md-12">
-        <label for="password" class="form-label">Confirm Password</label>
+        <label class="form-label">Confirm Password</label>
         <div class="input-group">
           <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="......." minlength=8 required>
           <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'" (click)="showPassWord()"></i>

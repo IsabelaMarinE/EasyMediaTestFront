@@ -9,6 +9,7 @@ import * as UserActions from '../../store/actions/user.action';
 import * as UserSelector from '../..//store/selectors/user.selectors';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +31,7 @@ export class SignupComponent implements OnInit  {
     public router: Router
   ){
     this.singupForm = this.fb.group({
-      fullName: ['', Validators.compose([Validators.required])],
+      name: ['', Validators.compose([Validators.required])],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8)])]
     });
@@ -56,6 +57,11 @@ export class SignupComponent implements OnInit  {
         if(response){
           this.userModel = _.cloneDeep(response);
           this.router.navigate(['/']);
+          Swal.fire({
+            icon: 'success',
+            title: 'User Created',
+            text: 'Now LogIn to enjoid'
+          });
         }
       })
 
